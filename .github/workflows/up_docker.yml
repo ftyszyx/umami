@@ -9,7 +9,8 @@ on:
         required: true
 
 permissions:
-  pages: write
+  contents: read
+  packages: write
 
 jobs:
   build:
@@ -18,12 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image to ghcr.io
         with:
           image: my_umami
-          tags: ${{ env.RELEASE_VERSION }}, latest
+          tags: ${{ inputs.version }},latest
           registry: ghcr.io
           multiPlatform: true
           platform: linux/amd64,linux/arm64
