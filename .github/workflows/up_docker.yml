@@ -1,6 +1,12 @@
 name: Create docker images
 
-on: [create]
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: Version
+        required: true
 
 permissions:
   pages: write
