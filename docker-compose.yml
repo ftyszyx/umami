@@ -2,11 +2,7 @@
 version: '3'
 services:
   umami:
-    # image: ghcr.io/umami-software/umami:postgresql-latest
-    container_name: umami
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/ftyszyx/my_umami:latest
     ports:
       - '8030:3000'
     environment:
