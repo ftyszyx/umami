@@ -24,7 +24,7 @@ jobs:
         with:
           image: my_umami
           tags: ${{ inputs.version }},latest
-          buildArgs: DATABASE_TYPE= mysql
+          buildArgs: DATABASE_TYPE=mysql
           registry: ghcr.io
           multiPlatform: true
           platform: linux/amd64,linux/arm64
