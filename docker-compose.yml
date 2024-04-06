@@ -2,7 +2,7 @@
 version: '3'
 services:
   umami:
-    image: ghcr.io/ftyszyx/my_umami:latest
+    image: ghcr.io/ftyszyx/my_umami:2.0
     ports:
       - '8030:3000'
     environment:
