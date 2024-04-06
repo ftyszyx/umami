@@ -2,12 +2,12 @@
 version: '3'
 services:
   umami:
-    image: ghcr.io/ftyszyx/my_umami:2.0
+    image: ghcr.io/ftyszyx/my_umami:1.0
     ports:
       - '8030:3000'
     environment:
-      DATABASE_URL: postgresql://umami:umami@db:5432/umami
-      DATABASE_TYPE: postgresql
+      DATABASE_URL: mysql://umami:umami@db:3306/umami
+      DATABASE_TYPE: mysql
       APP_SECRET: replace-me-with-a-random-string
     depends_on:
       db:
@@ -19,18 +19,14 @@ services:
       timeout: 5s
       retries: 5
   db:
-    image: postgres:15-alpine
+    image: mysql:5.7
+    ports:
+      - 9008:3306
     environment:
-      POSTGRES_DB: umami
-      POSTGRES_USER: umami
-      POSTGRES_PASSWORD: umami
-    volumes:
-      - umami-db-data:/var/lib/postgresql/data
+      MYSQL_DATABASE: umami
+      MYSQL_ROOT_PASSWORD: 'umami'
+      MYSQL_USER: 'umami'
+      MYSQL_PASSWORD: 'umami'
     restart: always
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
-      interval: 5s
-      timeout: 5s
-      retries: 5
 volumes:
   umami-db-data:
