@@ -29,7 +29,7 @@ services:
       MYSQL_PASSWORD: 'umami'
     restart: always
     healthcheck:
-      test: ['CMD-SHELL', 'mysql -U $${MYSQL_USER} -d $${MYSQL_DATABASE}']
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       interval: 5s
       timeout: 5s
       retries: 5
