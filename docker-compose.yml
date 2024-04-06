@@ -28,5 +28,10 @@ services:
       MYSQL_USER: 'umami'
       MYSQL_PASSWORD: 'umami'
     restart: always
+    healthcheck:
+      test: ['CMD-SHELL', 'mysql -U $${MYSQL_USER} -d $${MYSQL_DATABASE}']
+      interval: 5s
+      timeout: 5s
+      retries: 5
 volumes:
   umami-db-data:
